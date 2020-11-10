@@ -1,0 +1,26 @@
+CREATE TABLE Users(
+	username VARCHAR(40) NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	email VARCHAR(40) NOT NULL,
+	PRIMARY KEY(username)
+);
+
+CREATE TABLE Rooms(
+	roomId INT AUTO_INCREMENT NOT NULL,
+	roomName VARCHAR(50) NOT NULL,
+	public BOOLEAN NOT NULL,
+	roomPass VARCHAR(40) NOT NULL,
+	PRIMARY KEY(roomId)
+);
+
+CREATE TABLE Messages(
+	messageId INT NOT NULL AUTO_INCREMENT,
+	sender VARCHAR(40) NOT NULL,
+	receiver VARCHAR(40) NOT NULL,
+	room INT NOT NULL,
+	message TEXT NOT NULL,
+	PRIMARY KEY(messageId),
+	FOREIGN KEY(sender) REFERENCES Users(username),
+	FOREIGN KEY(receiver) REFERENCES Users(username),
+	FOREIGN KEY(room) REFERENCES Rooms(roomId)
+);
