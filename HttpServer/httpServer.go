@@ -9,8 +9,9 @@ import (
 )
 
 func main() {
+	dbConnect(dbUser, dbPass, dbName)
 	http.HandleFunc("/", welcomeHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(fmt.Sprintf(":%d", httpPort), nil)
 }
 
 type userInfo struct {
@@ -51,6 +52,8 @@ func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 			t, err := template.ParseFiles("welcomeresponse.html")
 			check(err)
 			t.Execute(w, response)
+			//Add the user in the database
+			addUser(myUser)
 		} else {
 			response.Heading = "Something went wrong.Please go back to fix it"
 			t, err := template.ParseFiles("welcomeresponse.html")
@@ -110,9 +113,16 @@ func checkUserInfo(info userInfo) responseMsg {
 		r.Message = "Passwords do not match"
 		return r
 	}
+
 	if checkPassword(info.password) == false {
 		r.success = false
 		r.Message = "Password is not strong enough.It should contain at least one capital letter and one special character"
+		return r
+	}
+	//Check if a user with this username already exists
+	if getUser(info.Username).Username != "" {
+		r.success = false
+		r.Message = "A user with this username already exists!"
 		return r
 	}
 	r.success = true
