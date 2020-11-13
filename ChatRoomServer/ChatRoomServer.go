@@ -8,11 +8,13 @@ import (
 )
 
 func main() {
-	service := ":1200"
+	service := ":1200" //	get this from conf file
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
+	//Listen for connections
 	listener, err := net.ListenTCP("tcp", tcpAddr)
 	checkError(err)
+	//Main loop
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
