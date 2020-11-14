@@ -11,28 +11,29 @@ import (
 )
 
 func main() {
-	//Get this from conf file
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "Usage:%s host:port", os.Args[0])
-		os.Exit(1)
-	}
-	service := os.Args[1]
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
+	tcpAddr, err := net.ResolveTCPAddr("tcp4", serverService)
 	checkError(err)
 	//Connect to the server
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 	checkError(err)
 	//Login
-	msg := "Hello from the client!\n"
-	sendMsg(conn, msg)
-	//fmt.Fprintf(conn, "Hello from the client!\n")
-	//Receive msg from server
-	message := recMsg(conn)
-	checkError(err)
-	fmt.Println(message)
-	username, password := credentials()
-	fmt.Printf("\nUsername: %s, Password: %s\n", username, password)
+	loggedIn := false
+	for loggedIn == false {
+		loggedIn = login(conn)
+	}
 	os.Exit(0)
+}
+
+func login(conn net.Conn) bool {
+	username, password := credentials() //Get user's credential from user
+	msg := fmt.Sprintf("Login%s%s%s%s\n", specialString, username, specialString, password)
+	sendMsg(conn, msg) //Send the request
+	response := recMsg(conn)
+	fmt.Printf("\n%s\n", response)
+	if response == "success" {
+		return true
+	}
+	return false
 }
 
 func checkError(err error) {
@@ -74,5 +75,5 @@ func sendMsg(conn net.Conn, msg string) {
 func recMsg(conn net.Conn) string {
 	message, err := bufio.NewReader(conn).ReadString('\n')
 	checkError(err)
-	return message
+	return strings.TrimSuffix(message, "\n")
 }
