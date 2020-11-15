@@ -16,6 +16,12 @@ type userInfo struct {
 	email    string
 }
 
+type roomInfo struct {
+	roomName string
+	public   bool
+	roomPass string
+}
+
 var db *sql.DB
 
 func dbConnect(dbUser, dbPass, dbName string) {
@@ -44,6 +50,21 @@ func checkCredentials(username, password string) bool {
 		}
 	}
 	return false
+}
+
+//Get a room's info
+func getRoom(roomName string) roomInfo {
+	// query
+	rows, err := db.Query("SELECT roomName,public,roomPass FROM Rooms WHERE roomName=?", roomName)
+	checkErr(err)
+
+	room := roomInfo{}
+	room.roomName = ""
+	for rows.Next() {
+		err = rows.Scan(&room.roomName, &room.public, &room.roomPass)
+		checkErr(err)
+	}
+	return room
 }
 
 //Returns the md5Hash of string s

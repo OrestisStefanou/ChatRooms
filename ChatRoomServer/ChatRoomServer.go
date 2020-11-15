@@ -40,31 +40,18 @@ func handleClient(conn net.Conn) {
 	for finished == false {
 		request := recMsg(conn)
 		data := strings.Split(request, specialString)
-		fmt.Printf("data: %#v\n", data)
 		switch data[0] {
 		case "Login":
 			handleLogin(conn, data)
+		case "JoinRoom":
+			handleJoinRoom(conn, data)
 		case "Closed": //Connection finished
 			finished = true
 		default:
 			sendMsg(conn, "Something went wrong\n")
 		}
 	}
-	//sendMsg(conn, "Hello from the server!\n")
 	// we're finished with this client
-}
-
-//Handle Login Request
-func handleLogin(conn net.Conn, data []string) {
-	username := data[1]
-	password := data[2]
-	fmt.Printf("USERNAME:%s\n", username)
-	fmt.Printf("PASS:%s\n", password)
-	if checkCredentials(username, password) {
-		sendMsg(conn, "success\n")
-	} else {
-		sendMsg(conn, "failed\n")
-	}
 }
 
 //Send msg to server

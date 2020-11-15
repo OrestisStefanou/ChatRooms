@@ -10,6 +10,9 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 )
 
+var myUsername = ""
+var myRoom = ""
+
 func main() {
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", serverService)
 	checkError(err)
@@ -21,7 +24,37 @@ func main() {
 	for loggedIn == false {
 		loggedIn = login(conn)
 	}
+
+	timeToExit := false
+	for timeToExit == false {
+		printMenu()
+		fmt.Print("Enter a choice(1-3):")
+		//Get user's request
+		text := readString()
+		switch text {
+		case "1":
+			joinRoom(conn)
+		case "2":
+			//Ask user to give an id
+			//Check if room id already exists
+			//If room id doesn't exist ask if is a private or public room
+			//If private ask for password for the room
+			//If not private create and enter the room
+		case "3":
+			//Exit
+			timeToExit = true
+		default:
+			fmt.Println("Please enter a number between 1-3")
+		}
+	}
 	os.Exit(0)
+}
+
+func readString() string {
+	reader := bufio.NewReader(os.Stdin)
+	text, _ := reader.ReadString('\n')
+	text = strings.Replace(text, "\n", "", -1)
+	return text
 }
 
 func login(conn net.Conn) bool {
@@ -29,10 +62,13 @@ func login(conn net.Conn) bool {
 	msg := fmt.Sprintf("Login%s%s%s%s\n", specialString, username, specialString, password)
 	sendMsg(conn, msg) //Send the request
 	response := recMsg(conn)
-	fmt.Printf("\n%s\n", response)
+	//fmt.Printf("\n%s\n", response)
 	if response == "success" {
+		fmt.Println("Login successful")
+		myUsername = username
 		return true
 	}
+	fmt.Println("Login failed")
 	return false
 }
 
