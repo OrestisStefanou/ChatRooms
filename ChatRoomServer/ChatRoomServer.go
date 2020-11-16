@@ -16,6 +16,7 @@ func main() {
 	checkError(err)
 
 	dbConnect(dbUser, dbPass, dbName) //Connect to the database
+	initChatRooms()
 
 	//Main loop
 	for {

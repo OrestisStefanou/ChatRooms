@@ -1,6 +1,9 @@
 package main
 
-import "net"
+import (
+	"fmt"
+	"net"
+)
 
 //Handle Login Request
 func handleLogin(conn net.Conn, data []string) {
@@ -24,8 +27,19 @@ func handleJoinRoom(conn net.Conn, data []string) {
 	} else { //Check if is a private room
 		if room.public == false {
 			sendMsg(conn, "password\n")
+			//Read the password,check if is correct ....
 		} else {
 			sendMsg(conn, "success\n")
+			//Check if the room exists
+			_, hasKey := chatRooms[room.roomName]
+			if hasKey { //Append the user in the room
+				addUserInRoom(room.roomName, conn)
+			} else { //Create the room and append the user
+				createRoom(room.roomName)
+				addUserInRoom(room.roomName, conn)
+				//Start a go routine to handle the room
+			}
+			fmt.Printf("ChatRooms is %#v\n", chatRooms)
 		}
 	}
 }

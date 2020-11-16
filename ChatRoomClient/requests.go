@@ -20,6 +20,7 @@ func joinRoom(conn net.Conn) {
 	switch response {
 	case "success":
 		fmt.Println("Entering room")
+		myRoom = roomName
 	case "password":
 		//Ask for password and send it to the server
 		fmt.Println("Asking for password")

@@ -107,7 +107,7 @@ func sendMsg(conn net.Conn, msg string) {
 	}
 }
 
-//Receive msg froms server
+//Receive msg from server
 func recMsg(conn net.Conn) string {
 	message, err := bufio.NewReader(conn).ReadString('\n')
 	checkError(err)

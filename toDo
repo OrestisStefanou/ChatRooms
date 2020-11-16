@@ -1,8 +1,2 @@
-Client:
--Send user credentials to the server
--If credentials are correct show menu to enter a room or create one
-
-Server:
--Check if user credentials are correct
-
-Create a conf file for both client and server
+Use one goroutine for each room using channels
+Check for empty rooms
