@@ -1,2 +1,8 @@
-Use one goroutine for each room using channels
-Check for empty rooms
+Otan kamno access ta maps mou xriazome mutexes
+Check for empty rooms.Use a map to save users of each room.
+Key is the username and key is if active or not
+
+Code to check again:
+1)ChatRoom->handleRoom
+2)Servers request->Handle Join Room,handleMessage
+3)Client request->join Room

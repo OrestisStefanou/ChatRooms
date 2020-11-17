@@ -23,7 +23,45 @@ func joinRoom(conn net.Conn) {
 		myRoom = roomName
 	case "password":
 		//Ask for password and send it to the server
-		fmt.Println("Asking for password")
+		fmt.Print("Room Password:")
+		roomPass := readString()
+		request := fmt.Sprintf("%s\n", roomPass)
+		sendMsg(conn, request)
+		resp := recMsg(conn)
+		if resp == "success" {
+			fmt.Println("Entering room")
+			myRoom = roomName
+			ch := make(chan int, 1) //A channel to know when client exits the room
+			//Start chatting
+			go func() { //Go routine to get incoming messages
+				exit := false
+				for exit == false {
+					select {
+					case _ = <-ch:
+						exit = true
+					default:
+						incomingMsg := recMsg(conn)
+						fmt.Println(incomingMsg)
+					}
+				}
+			}()
+			for {
+				fmt.Print("Send msg(send 'exit' to exit room ):")
+				message := readString()
+				if message == "exit" {
+					//Send the exit message to the server
+					msgRequest := fmt.Sprintf("Message%s%s%s%s%s%s\n", specialString, myUsername, specialString, myRoom, specialString, message)
+					sendMsg(conn, msgRequest)
+					ch <- 1
+					break
+				} else {
+					msgRequest := fmt.Sprintf("Message%s%s%s%s%s%s\n", specialString, myUsername, specialString, myRoom, specialString, message)
+					sendMsg(conn, msgRequest)
+				}
+			}
+		} else {
+			fmt.Println(resp)
+		}
 	case "failed":
 		//Room name doesn't exist
 		fmt.Println("Room name doesn't exist")

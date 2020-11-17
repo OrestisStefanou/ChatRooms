@@ -46,6 +46,8 @@ func handleClient(conn net.Conn) {
 			handleLogin(conn, data)
 		case "JoinRoom":
 			handleJoinRoom(conn, data)
+		case "Message":
+			handleMessage(conn, data)
 		case "Closed": //Connection finished
 			finished = true
 		default:
