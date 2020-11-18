@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net"
 )
 
@@ -19,7 +18,8 @@ func handleLogin(conn net.Conn, data []string) {
 
 //Handle JoinRoom request
 func handleJoinRoom(conn net.Conn, data []string) {
-	roomName := data[1]
+	username := data[1]
+	roomName := data[2]
 	room := getRoom(roomName)
 	//If room doesn't exitst
 	if room.roomName == "" {
@@ -31,33 +31,13 @@ func handleJoinRoom(conn net.Conn, data []string) {
 			password := recMsg(conn)
 			if room.roomPass == password {
 				sendMsg(conn, "success\n")
-				//Check if the room exists
-				_, hasKey := chatRooms[room.roomName]
-				if hasKey { //Append the user in the room
-					addUserInRoom(room.roomName, conn)
-					fmt.Printf("Slice is %#v\n", chatRooms[room.roomName])
-
-				} else { //Create the room and append the user
-					createRoom(room.roomName)
-					addUserInRoom(room.roomName, conn)
-					//Start a go routine to handle the room
-					go handleRoom(room.roomName)
-				}
+				enterRoom(conn, username, room.roomName)
 			} else {
 				sendMsg(conn, "Wrong Password\n")
 			}
 		} else {
 			sendMsg(conn, "success\n")
-			//Check if the room exists
-			_, hasKey := chatRooms[room.roomName]
-			if hasKey { //Append the user in the room
-				addUserInRoom(room.roomName, conn)
-			} else { //Create the room and append the user
-				createRoom(room.roomName)
-				addUserInRoom(room.roomName, conn)
-				//Start a go routine to handle the room
-				go handleRoom(room.roomName)
-			}
+			enterRoom(conn, username, room.roomName)
 			//fmt.Printf("ChatRooms is %#v\n", chatRooms)
 		}
 	}
@@ -70,6 +50,7 @@ func handleMessage(conn net.Conn, data []string) {
 	message := data[3]
 
 	//Insert the messageInfo in the room's channel
-	msg := msgInfo{message, conn, userName}
+	msg := userConn{message, conn, userName, roomName}
+	//MUTEX HERE ??
 	chatRoomMsgs[roomName] <- msg
 }
