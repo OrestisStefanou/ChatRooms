@@ -71,6 +71,7 @@ func handleRoom(roomName string) {
 			fmt.Println(m.userName)
 			if m.msg == "exit" {
 				msg = fmt.Sprintf("[%s] left the room\n", m.userName)
+				sendMsg(m.conn, "Exit successful\n")
 				//Remove the user from the group
 				for i := 0; i < len(userConns); i++ {
 					if userConns[i].userName == m.userName {

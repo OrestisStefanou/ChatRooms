@@ -22,12 +22,16 @@ func enterRoom(conn net.Conn) {
 				goto end
 			default:
 				incomingMsg := recMsg(conn)
-				fmt.Println(incomingMsg)
+				if incomingMsg == "Exit successful" {
+
+				} else {
+					fmt.Println(incomingMsg)
+				}
 			}
 		}
 
 	end:
-		fmt.Println("Go routine exits")
+		//fmt.Println("Go routine exits")
 	}()
 	fmt.Print("Send msg(send 'exit' to exit room ):\n")
 	for {
