@@ -11,6 +11,26 @@ func printMenu() {
 	fmt.Println("3.Exit")
 }
 
+//Create a room
+func createRoom() {
+	fmt.Print("Enter Room Name:")
+	roomName := readString()
+	fmt.Print("Public(0) or Private(1)?Enter 0 or 1:")
+	public := readString()
+	switch public {
+	case "0":
+		//Send a request to create a public room
+		request := fmt.Sprintf("CreateRoom%s%s%s%s\n", specialString, roomName, specialString, public)
+	case "1":
+		fmt.Print("Enter room's password:")
+		password := readString()
+		//Send a request to create a private room
+		request := fmt.Sprintf("CreateRoom%s%s%s%s%s%s\n", specialString, roomName, specialString, public, specialString, password)
+	default:
+		fmt.Print("Please enter 0 or 1")
+	}
+}
+
 //Enter a room
 func enterRoom(conn net.Conn) {
 	ch := make(chan int, 1) //A channel to know when client exits the room
