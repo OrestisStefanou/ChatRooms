@@ -33,6 +33,8 @@ func enterRoom(conn net.Conn) {
 	end:
 		//fmt.Println("Go routine exits")
 	}()
+	msgRequest := fmt.Sprintf("Message%s%s%s%s%sJoined the room\n", specialString, myUsername, specialString, myRoom, specialString)
+	sendMsg(conn, msgRequest)
 	fmt.Print("Send msg(send 'exit' to exit room ):\n")
 	for {
 		message := readString()

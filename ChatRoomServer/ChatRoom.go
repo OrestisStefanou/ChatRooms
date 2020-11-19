@@ -36,19 +36,19 @@ func createRoom(roomName string) {
 
 //Add a user in the room
 func addUserInRoom(roomName string, clientConn userConn) {
-	mu.Lock()
+	//mu.Lock()
 	chatRooms[roomName] = append(chatRooms[roomName], clientConn)
-	mu.Unlock()
+	//mu.Unlock()
 }
 
 //User enters the room
 func enterRoom(conn net.Conn, username, roomName string) {
 	userConnection := userConn{"", conn, username, roomName}
+	mu.Lock()
 	//Check if the room exists
 	_, hasKey := chatRooms[roomName]
 	if hasKey { //Append the user in the room
 		addUserInRoom(roomName, userConnection)
-		//fmt.Printf("Slice is %#v\n", chatRooms[room.roomName])
 
 	} else { //Create the room and append the user
 		createRoom(roomName)
@@ -56,6 +56,7 @@ func enterRoom(conn net.Conn, username, roomName string) {
 		//Start a go routine to handle the room
 		go handleRoom(roomName)
 	}
+	mu.Unlock()
 }
 
 //Handle a Room
