@@ -16,6 +16,29 @@ func handleLogin(conn net.Conn, data []string) {
 	}
 }
 
+//Handle CreateRooom
+func handleCreateRoom(conn net.Conn, data []string) {
+	roomName := data[1]
+	public := data[2]
+	password := data[3]
+
+	var boolPublic bool
+	if public == "0" {
+		boolPublic = false
+	} else {
+		boolPublic = true
+	}
+	//Check if a room with this name already exists
+	room := getRoom(roomName)
+	if room.roomName == "" {
+		createNewRoom(roomName, password, boolPublic)
+		//Inform the user
+		sendMsg(conn, "Room created successfuly!\n")
+	} else {
+		sendMsg(conn, "A room with this name already exists!\n")
+	}
+}
+
 //Handle JoinRoom request
 func handleJoinRoom(conn net.Conn, data []string) {
 	username := data[1]

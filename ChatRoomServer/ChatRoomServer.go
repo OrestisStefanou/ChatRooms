@@ -48,6 +48,8 @@ func handleClient(conn net.Conn) {
 			handleJoinRoom(conn, data)
 		case "Message":
 			handleMessage(conn, data)
+		case "CreateRoom":
+			handleCreateRoom(conn, data)
 		case "Closed": //Connection finished
 			finished = true
 		default:

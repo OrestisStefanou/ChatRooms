@@ -67,6 +67,16 @@ func getRoom(roomName string) roomInfo {
 	return room
 }
 
+//Create a new room
+func createNewRoom(roomName, password string, public bool) {
+	//insert
+	stmt, err := db.Prepare("INSERT Rooms SET roomName=?,public=?,roomPass=?")
+	checkErr(err)
+
+	_, err = stmt.Exec(roomName, public, password)
+	checkErr(err)
+}
+
 //Returns the md5Hash of string s
 func md5Hash(s string) string {
 	hash := md5.Sum([]byte(s))

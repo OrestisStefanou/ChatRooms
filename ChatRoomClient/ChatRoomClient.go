@@ -35,11 +35,7 @@ func main() {
 		case "1":
 			joinRoom(conn)
 		case "2":
-			//Ask user to give an id
-			//Check if room id already exists
-			//If room id doesn't exist ask if is a private or public room
-			//If private ask for password for the room
-			//If not private create and enter the room
+			createRoom(conn)
 		case "3":
 			//Exit
 			timeToExit = true

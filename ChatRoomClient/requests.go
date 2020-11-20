@@ -12,20 +12,28 @@ func printMenu() {
 }
 
 //Create a room
-func createRoom() {
+func createRoom(conn net.Conn) {
 	fmt.Print("Enter Room Name:")
 	roomName := readString()
-	fmt.Print("Public(0) or Private(1)?Enter 0 or 1:")
+	fmt.Print("Private(0) or Public(1)?Enter 0 or 1:")
 	public := readString()
 	switch public {
-	case "0":
-		//Send a request to create a public room
-		request := fmt.Sprintf("CreateRoom%s%s%s%s\n", specialString, roomName, specialString, public)
 	case "1":
+		//Send a request to create a public room
+		request := fmt.Sprintf("CreateRoom%s%s%s%s%s''\n", specialString, roomName, specialString, public, specialString)
+		sendMsg(conn, request)
+		//Get the response
+		response := recMsg(conn)
+		fmt.Println(response)
+	case "0":
 		fmt.Print("Enter room's password:")
 		password := readString()
 		//Send a request to create a private room
 		request := fmt.Sprintf("CreateRoom%s%s%s%s%s%s\n", specialString, roomName, specialString, public, specialString, password)
+		sendMsg(conn, request)
+		//Get the response
+		response := recMsg(conn)
+		fmt.Println(response)
 	default:
 		fmt.Print("Please enter 0 or 1")
 	}
