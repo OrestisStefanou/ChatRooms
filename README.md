@@ -36,5 +36,5 @@ How to run and use it:
     \6.Login,create or join a room and start chatting!
 
 What left:
-    1.Better design of the html files
-    2.Create a load balancer
+    \1.Better design of the html files
+    \2.Create a load balancer
