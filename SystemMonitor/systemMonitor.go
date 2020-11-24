@@ -3,10 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"net"
 	"os"
-	"os/exec"
 	"strings"
 )
 
@@ -16,9 +14,6 @@ func main() {
 	//Listen for connections
 	listener, err := net.ListenTCP("tcp", tcpAddr)
 	checkError(err)
-
-	dbConnect(dbUser, dbPass, dbName) //Connect to the database
-	initChatRooms()
 
 	//Main loop
 	for {
@@ -41,24 +36,19 @@ func handleClient(conn net.Conn) {
 	defer conn.Close()
 	finished := false
 	for finished == false {
-		request := recMsg(conn)
-		data := strings.Split(request, specialString)
+		message := recMsg(conn)
+		data := strings.Split(message, specialString)
 		switch data[0] {
-		case "Login":
-			handleLogin(conn, data)
-		case "JoinRoom":
-			handleJoinRoom(conn, data)
-		case "Message":
-			handleMessage(conn, data)
-		case "CreateRoom":
-			handleCreateRoom(conn, data)
-		case "Closed": //Connection finished
-			finished = true
+		case "MemInfo":
+			//Process and print MemInfo
+		case "CpuInfo":
+			//Process and print CpuInfo
+		case "ClientsNum":
+			//Print how many clients are connected to the server
 		default:
-			sendMsg(conn, "Something went wrong\n")
+			finished = true
 		}
 	}
-	// we're finished with this client
 }
 
 //Send msg
@@ -81,24 +71,4 @@ func recMsg(conn net.Conn) string {
 		return fmt.Sprintf("Closed%s", specialString)
 	}
 	return strings.TrimSuffix(message, "\n")
-}
-
-//Send cpu,memory stats and user count to systemMonitor Server
-func sendStats() {
-	//Connect to the systemMonitor Server first
-	//Add the necessary info to connect in conf.go file
-	cmd := "cat /proc/meminfo | grep 'Mem'"
-	out, err := exec.Command("bash", "-c", cmd).Output()
-	if err != nil {
-		log.Fatalf("Command failed with '%s'\n", err)
-	}
-	fmt.Println(string(out))
-
-	cmd2 := exec.Command("mpstat", "2", "5")
-	out, err = cmd2.CombinedOutput()
-	if err != nil {
-		log.Fatalf("cmd.CombinedOutput() failed with '%s'\n", err)
-	}
-	fmt.Printf("Output:\n%s\n", string(out))
-
 }
