@@ -20,6 +20,8 @@ func main() {
 	dbConnect(dbUser, dbPass, dbName) //Connect to the database
 	initChatRooms()
 
+	go sendStats() //Start the goroutine to send the stats to system monitor server
+
 	//Main loop
 	for {
 		conn, err := listener.Accept()
@@ -86,19 +88,40 @@ func recMsg(conn net.Conn) string {
 //Send cpu,memory stats and user count to systemMonitor Server
 func sendStats() {
 	//Connect to the systemMonitor Server first
-	//Add the necessary info to connect in conf.go file
-	cmd := "cat /proc/meminfo | grep 'Mem'"
-	out, err := exec.Command("bash", "-c", cmd).Output()
-	if err != nil {
-		log.Fatalf("Command failed with '%s'\n", err)
-	}
-	fmt.Println(string(out))
+	sysMonitorAddr, err := net.ResolveTCPAddr("tcp4", systemMonitorService)
+	checkErr(err)
 
-	cmd2 := exec.Command("mpstat", "2", "5")
-	out, err = cmd2.CombinedOutput()
-	if err != nil {
-		log.Fatalf("cmd.CombinedOutput() failed with '%s'\n", err)
-	}
-	fmt.Printf("Output:\n%s\n", string(out))
+	conn, err := net.DialTCP("tcp", nil, sysMonitorAddr)
+	checkErr(err)
+	for {
+		//Execute the commands and send the results
+		cmd2 := exec.Command("mpstat", "2", "2")
+		out, err := cmd2.CombinedOutput()
+		if err != nil {
+			log.Fatalf("cmd.CombinedOutput() failed with '%s'\n", err)
+		}
+		//fmt.Printf("Output:\n%s\n", string(out))
+		tempInfo := strings.Replace(string(out), "%", " ", -1) //Replace '%' because it causes problems to fprintf
+		info := strings.Split(tempInfo, "\n")
+		//Send the info to the system monitor server
+		for i := 0; i < len(info); i++ {
+			msg := fmt.Sprintf("CpuInfo%s%s\n", specialString, info[i])
+			sendMsg(conn, msg)
+			recMsg(conn)
 
+		}
+
+		cmd := "cat /proc/meminfo | grep 'Mem'"
+		out, err = exec.Command("bash", "-c", cmd).Output()
+		if err != nil {
+			log.Fatalf("Command failed with '%s'\n", err)
+		}
+		//fmt.Println(string(out))
+		info = strings.Split(string(out), "\n")
+		for i := 0; i < len(info); i++ {
+			msg := fmt.Sprintf("MemInfo%s%s\n", specialString, info[i])
+			sendMsg(conn, msg)
+			recMsg(conn)
+		}
+	}
 }

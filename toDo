@@ -1,4 +1,4 @@
 1.Create logfiles
 2.Keep a count of how many users are connected in the server
-3.Create a goroutine to send cpu,memory stats and user count to
-systemMonitor server
+3.Check sendMsg function
+4.Encrypt messages before sending them

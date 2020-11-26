@@ -16,11 +16,9 @@ CREATE TABLE Rooms(
 CREATE TABLE Messages(
 	messageId INT NOT NULL AUTO_INCREMENT,
 	sender VARCHAR(40) NOT NULL,
-	receiver VARCHAR(40) NOT NULL,
 	room INT NOT NULL,
 	message TEXT NOT NULL,
 	PRIMARY KEY(messageId),
 	FOREIGN KEY(sender) REFERENCES Users(username),
-	FOREIGN KEY(receiver) REFERENCES Users(username),
 	FOREIGN KEY(room) REFERENCES Rooms(roomId)
 );

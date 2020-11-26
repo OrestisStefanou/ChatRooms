@@ -37,12 +37,17 @@ func handleClient(conn net.Conn) {
 	finished := false
 	for finished == false {
 		message := recMsg(conn)
+		//fmt.Printf("Got message:%s\n", message)
 		data := strings.Split(message, specialString)
 		switch data[0] {
 		case "MemInfo":
 			//Process and print MemInfo
+			fmt.Println(data[1])
+			sendMsg(conn, "Got it\n")
 		case "CpuInfo":
 			//Process and print CpuInfo
+			fmt.Println(data[1])
+			sendMsg(conn, "Got it\n")
 		case "ClientsNum":
 			//Print how many clients are connected to the server
 		default:
