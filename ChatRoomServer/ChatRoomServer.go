@@ -56,6 +56,10 @@ func handleClient(conn net.Conn) {
 			handleCreateRoom(conn, data)
 		case "Closed": //Connection finished
 			finished = true
+			//Decrease the number of connected Users
+			usersMutex.Lock()
+			connectedUsers--
+			usersMutex.Unlock()
 		default:
 			sendMsg(conn, "Something went wrong\n")
 		}
@@ -123,5 +127,11 @@ func sendStats() {
 			sendMsg(conn, msg)
 			recMsg(conn)
 		}
+
+		//Send the connected users
+		//We don't lock the mutex here because is not a problem if we read an older number
+		msg := fmt.Sprintf("ClientsNum%sConnected Users:%d\n", specialString, connectedUsers)
+		sendMsg(conn, msg)
+		recMsg(conn)
 	}
 }

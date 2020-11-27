@@ -11,6 +11,10 @@ func handleLogin(conn net.Conn, data []string) {
 
 	if checkCredentials(username, password) {
 		sendMsg(conn, "success\n")
+		//Increase number of users by one
+		usersMutex.Lock()
+		connectedUsers++
+		usersMutex.Unlock()
 	} else {
 		sendMsg(conn, "failed\n")
 	}

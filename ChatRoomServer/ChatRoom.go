@@ -22,6 +22,9 @@ var chatRoomMsgs map[string]chan userConn
 //A mutex to protect ChatRooms map
 var mu sync.Mutex
 
+var connectedUsers = 0
+var usersMutex sync.Mutex
+
 //Initialize the maps
 func initChatRooms() {
 	chatRooms = make(map[string][]userConn)

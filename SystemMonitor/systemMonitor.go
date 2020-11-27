@@ -50,6 +50,8 @@ func handleClient(conn net.Conn) {
 			sendMsg(conn, "Got it\n")
 		case "ClientsNum":
 			//Print how many clients are connected to the server
+			fmt.Println(data[1])
+			sendMsg(conn, "Got it\n")
 		default:
 			finished = true
 		}
