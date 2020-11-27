@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"net"
 	"os"
@@ -35,6 +36,7 @@ func checkError(err error) {
 func handleClient(conn net.Conn) {
 	defer conn.Close()
 	finished := false
+	var b bytes.Buffer
 	for finished == false {
 		message := recMsg(conn)
 		//fmt.Printf("Got message:%s\n", message)
@@ -42,15 +44,23 @@ func handleClient(conn net.Conn) {
 		switch data[0] {
 		case "MemInfo":
 			//Process and print MemInfo
-			fmt.Println(data[1])
+			//fmt.Println(data[1])
+			b.WriteString(data[1] + "\n")
 			sendMsg(conn, "Got it\n")
 		case "CpuInfo":
 			//Process and print CpuInfo
-			fmt.Println(data[1])
+			//fmt.Println(data[1])
+			b.WriteString(data[1] + "\n")
 			sendMsg(conn, "Got it\n")
 		case "ClientsNum":
 			//Print how many clients are connected to the server
-			fmt.Println(data[1])
+			//fmt.Println(data[1])
+			b.WriteString(data[1] + "\n")
+			sendMsg(conn, "Got it\n")
+		case "StatsDone":
+			printYellow(data[1])
+			fmt.Println(b.String())
+			b.Reset()
 			sendMsg(conn, "Got it\n")
 		default:
 			finished = true
@@ -78,4 +88,25 @@ func recMsg(conn net.Conn) string {
 		return fmt.Sprintf("Closed%s", specialString)
 	}
 	return strings.TrimSuffix(message, "\n")
+}
+
+func printYellow(text string) {
+	colorYellow := "\033[33m"
+	fmt.Println(string(colorYellow), text)
+	colorReset := "\033[0m"
+	fmt.Println(string(colorReset))
+}
+
+func printGreen(text string) {
+	colorGreen := "\033[32m"
+	fmt.Println(string(colorGreen), text)
+	colorReset := "\033[0m"
+	fmt.Println(string(colorReset))
+}
+
+func printRed(text string) {
+	colorRed := "\033[31m"
+	fmt.Println(string(colorRed), text)
+	colorReset := "\033[0m"
+	fmt.Println(string(colorReset))
 }

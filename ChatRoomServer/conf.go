@@ -13,3 +13,6 @@ var specialString = "@*@"
 
 //System monitor Server configuration
 var systemMonitorService = "127.0.0.1:5555"
+
+//ChatRoomServer conf
+var myName = "Server1"

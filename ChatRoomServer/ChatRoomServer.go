@@ -109,7 +109,7 @@ func sendStats() {
 		info := strings.Split(tempInfo, "\n")
 		//Send the info to the system monitor server
 		for i := 0; i < len(info); i++ {
-			msg := fmt.Sprintf("CpuInfo%s%s\n", specialString, info[i])
+			msg := fmt.Sprintf("CpuInfo%s%s%s%s\n", specialString, info[i], specialString, myName)
 			sendMsg(conn, msg)
 			recMsg(conn)
 
@@ -123,14 +123,19 @@ func sendStats() {
 		//fmt.Println(string(out))
 		info = strings.Split(string(out), "\n")
 		for i := 0; i < len(info); i++ {
-			msg := fmt.Sprintf("MemInfo%s%s\n", specialString, info[i])
+			msg := fmt.Sprintf("MemInfo%s%s%s%s\n", specialString, info[i], specialString, myName)
 			sendMsg(conn, msg)
 			recMsg(conn)
 		}
 
 		//Send the connected users
 		//We don't lock the mutex here because is not a problem if we read an older number
-		msg := fmt.Sprintf("ClientsNum%sConnected Users:%d\n", specialString, connectedUsers)
+		msg := fmt.Sprintf("ClientsNum%sConnected Users:%d%s%s\n", specialString, connectedUsers, specialString, myName)
+		sendMsg(conn, msg)
+		recMsg(conn)
+
+		//Send message to tell system monitor that stats are finished
+		msg = fmt.Sprintf("StatsDone%s%s\n", specialString, myName)
 		sendMsg(conn, msg)
 		recMsg(conn)
 	}
