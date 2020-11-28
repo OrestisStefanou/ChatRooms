@@ -1,0 +1,299 @@
+2020/11/28 19:22:35 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:31 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:33 PM  all    1.88    0.00    1.13    1.75    0.50    0.38    0.00    0.00    0.00   94.36
+07:22:35 PM  all    4.12    0.00    1.38    0.12    0.62    0.25    0.00    0.00    0.00   93.50
+Average:     all    3.00    0.00    1.25    0.94    0.56    0.31    0.00    0.00    0.00   93.93
+
+MemTotal:        8005836 kB
+MemFree:         1088300 kB
+MemAvailable:    3679092 kB
+
+Connected Users:0
+
+2020/11/28 19:22:39 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:35 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:37 PM  all    1.63    0.00    1.63    0.00    0.63    0.25    0.00    0.00    0.00   95.85
+07:22:39 PM  all    2.88    0.00    1.50    0.00    0.38    0.25    0.00    0.00    0.00   94.99
+Average:     all    2.26    0.00    1.57    0.00    0.50    0.25    0.00    0.00    0.00   95.42
+
+MemTotal:        8005836 kB
+MemFree:         1087780 kB
+MemAvailable:    3678576 kB
+
+Connected Users:0
+
+2020/11/28 19:22:43 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:39 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:41 PM  all    2.75    0.00    0.88    0.00    0.38    0.25    0.00    0.00    0.00   95.75
+07:22:43 PM  all    7.58    0.00    2.90    3.91    0.88    0.25    0.00    0.00    0.00   84.47
+Average:     all    5.15    0.00    1.88    1.95    0.63    0.25    0.00    0.00    0.00   90.14
+
+MemTotal:        8005836 kB
+MemFree:         1069016 kB
+MemAvailable:    3665764 kB
+
+Connected Users:0
+
+2020/11/28 19:22:47 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:43 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:45 PM  all    2.87    0.00    1.12    0.00    0.37    0.37    0.00    0.00    0.00   95.26
+07:22:47 PM  all    3.02    0.00    1.51    0.00    0.38    0.25    0.00    0.00    0.00   94.84
+Average:     all    2.95    0.00    1.32    0.00    0.38    0.31    0.00    0.00    0.00   95.05
+
+MemTotal:        8005836 kB
+MemFree:         1072396 kB
+MemAvailable:    3669144 kB
+
+Connected Users:0
+
+2020/11/28 19:22:51 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:47 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:49 PM  all    2.51    0.00    1.76    0.00    0.50    0.13    0.00    0.00    0.00   95.11
+07:22:51 PM  all    3.89    0.00    1.13   17.96    0.63    0.50    0.00    0.00    0.00   75.88
+Average:     all    3.20    0.00    1.44    8.98    0.56    0.31    0.00    0.00    0.00   85.50
+
+MemTotal:        8005836 kB
+MemFree:         1058440 kB
+MemAvailable:    3657808 kB
+
+Connected Users:1
+
+2020/11/28 19:22:55 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:51 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:53 PM  all    3.00    0.00    1.62    0.00    0.62    0.38    0.00    0.00    0.00   94.38
+07:22:55 PM  all    4.77    0.00    2.26    0.00    0.63    0.13    0.00    0.00    0.00   92.22
+Average:     all    3.88    0.00    1.94    0.00    0.63    0.25    0.00    0.00    0.00   93.30
+
+MemTotal:        8005836 kB
+MemFree:         1048448 kB
+MemAvailable:    3650120 kB
+
+Connected Users:1
+
+2020/11/28 19:22:59 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:55 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:22:57 PM  all    1.25    0.00    1.38    0.00    0.63    0.13    0.00    0.00    0.00   96.61
+07:22:59 PM  all    2.99    0.00    1.00    0.00    0.37    0.50    0.00    0.00    0.00   95.14
+Average:     all    2.13    0.00    1.19    0.00    0.50    0.31    0.00    0.00    0.00   95.87
+
+MemTotal:        8005836 kB
+MemFree:         1047780 kB
+MemAvailable:    3649484 kB
+
+Connected Users:1
+
+2020/11/28 19:23:03 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:22:59 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:01 PM  all    1.25    0.00    1.13    0.00    0.38    0.13    0.00    0.00    0.00   97.11
+07:23:03 PM  all    1.88    0.00    0.88    0.00    0.25    0.00    0.00    0.00    0.00   96.98
+Average:     all    1.57    0.00    1.00    0.00    0.31    0.06    0.00    0.00    0.00   97.05
+
+MemTotal:        8005836 kB
+MemFree:         1047316 kB
+MemAvailable:    3649032 kB
+
+Connected Users:1
+
+2020/11/28 19:23:07 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:03 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:05 PM  all    1.88    0.00    1.00    0.00    0.50    0.38    0.00    0.00    0.00   96.25
+07:23:07 PM  all    2.02    0.00    1.13    0.00    0.50    0.25    0.00    0.00    0.00   96.10
+Average:     all    1.95    0.00    1.07    0.00    0.50    0.31    0.00    0.00    0.00   96.17
+
+MemTotal:        8005836 kB
+MemFree:         1047036 kB
+MemAvailable:    3648752 kB
+
+Connected Users:2
+
+2020/11/28 19:23:11 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:07 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:09 PM  all   11.22    0.00    0.88   15.01    0.25    0.13    0.00    0.00    0.00   72.51
+07:23:11 PM  all   26.88    2.12    0.88    6.38    0.38    0.12    0.00    0.00    0.00   63.25
+Average:     all   19.08    1.07    0.88   10.67    0.31    0.13    0.00    0.00    0.00   67.86
+
+MemTotal:        8005836 kB
+MemFree:         1036348 kB
+MemAvailable:    3643364 kB
+
+Connected Users:2
+
+2020/11/28 19:23:15 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:11 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:13 PM  all   25.56    0.00    0.13    0.00    0.13    0.13    0.00    0.00    0.00   74.06
+07:23:15 PM  all   25.44    0.00    0.25    0.00    0.12    0.12    0.00    0.00    0.00   74.06
+Average:     all   25.50    0.00    0.19    0.00    0.12    0.12    0.00    0.00    0.00   74.06
+
+MemTotal:        8005836 kB
+MemFree:         1039088 kB
+MemAvailable:    3646104 kB
+
+Connected Users:2
+
+2020/11/28 19:23:19 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:15 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:17 PM  all   26.78    0.00    0.50    0.00    0.13    0.00    0.00    0.00    0.00   72.59
+07:23:19 PM  all   25.72    0.00    0.25    0.00    0.13    0.00    0.00    0.00    0.00   73.90
+Average:     all   26.25    0.00    0.38    0.00    0.13    0.00    0.00    0.00    0.00   73.25
+
+MemTotal:        8005836 kB
+MemFree:         1038924 kB
+MemAvailable:    3645940 kB
+
+Connected Users:2
+
+2020/11/28 19:23:23 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:19 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:21 PM  all   25.81    0.00    0.13    0.00    0.13    0.00    0.00    0.00    0.00   73.93
+07:23:23 PM  all   27.18    0.00    0.62    0.00    0.37    0.00    0.00    0.00    0.00   71.82
+Average:     all   26.50    0.00    0.38    0.00    0.25    0.00    0.00    0.00    0.00   72.88
+
+MemTotal:        8005836 kB
+MemFree:         1037512 kB
+MemAvailable:    3644528 kB
+
+Connected Users:2
+
+2020/11/28 19:23:27 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:23 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:25 PM  all   34.25    0.00    1.13    0.00    0.13    0.25    0.00    0.00    0.00   64.24
+07:23:27 PM  all   27.12    0.00    0.88    0.00    0.25    0.12    0.00    0.00    0.00   71.62
+Average:     all   30.68    0.00    1.00    0.00    0.19    0.19    0.00    0.00    0.00   67.94
+
+MemTotal:        8005836 kB
+MemFree:         1017636 kB
+MemAvailable:    3624652 kB
+
+Connected Users:2
+
+2020/11/28 19:23:31 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:27 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:29 PM  all    7.37    0.00    1.12    0.00    0.50    0.25    0.00    0.00    0.00   90.76
+07:23:31 PM  all    5.26    0.00    1.38    0.00    0.50    0.13    0.00    0.00    0.00   92.74
+Average:     all    6.31    0.00    1.25    0.00    0.50    0.19    0.00    0.00    0.00   91.75
+
+MemTotal:        8005836 kB
+MemFree:         1042592 kB
+MemAvailable:    3644880 kB
+
+Connected Users:0
+
+2020/11/28 19:23:35 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:31 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:33 PM  all    2.76    0.00    0.63    0.00    0.25    0.25    0.00    0.00    0.00   96.11
+07:23:35 PM  all    0.88    0.00    0.50    0.00    0.25    0.25    0.00    0.00    0.00   98.12
+Average:     all    1.82    0.00    0.56    0.00    0.25    0.25    0.00    0.00    0.00   97.12
+
+MemTotal:        8005836 kB
+MemFree:         1046368 kB
+MemAvailable:    3648656 kB
+
+Connected Users:0
+
+2020/11/28 19:23:39 Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:23:35 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:23:37 PM  all    2.02    0.00    1.01   11.46    0.38    0.13    0.00    0.00    0.00   85.01
+07:23:39 PM  all    3.61    0.00    1.25    1.99    0.62    0.37    0.00    0.00    0.00   92.15
+Average:     all    2.82    0.00    1.13    6.70    0.50    0.25    0.00    0.00    0.00   88.60
+
+MemTotal:        8005836 kB
+MemFree:         1041800 kB
+MemAvailable:    3644112 kB
+
+Connected Users:0
+
+2020/11/28 19:25:48 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:25:44 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:25:46 PM  all    6.53    0.00    2.89    0.00    1.13    0.38    0.00    0.00    0.00   89.07
+07:25:48 PM  all    2.76    0.00    1.00    0.00    0.38    0.25    0.00    0.00    0.00   95.61
+Average:     all    4.64    0.00    1.94    0.00    0.75    0.31    0.00    0.00    0.00   92.35
+
+MemTotal:        8005836 kB
+MemFree:         1038924 kB
+MemAvailable:    3609532 kB
+
+Connected Users:0
+
+2020/11/28 19:25:52 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:25:48 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:25:50 PM  all    4.40    0.00    1.51    0.00    0.63    0.38    0.00    0.00    0.00   93.09
+07:25:52 PM  all    0.75    0.00    0.00    0.13    0.13    0.00    0.00    0.00    0.00   98.99
+Average:     all    2.58    0.00    0.75    0.06    0.38    0.19    0.00    0.00    0.00   96.04
+
+MemTotal:        8005836 kB
+MemFree:         1042312 kB
+MemAvailable:    3612920 kB
+
+Connected Users:0
+
+2020/11/28 19:25:56 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:25:52 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:25:54 PM  all    2.25    0.00    0.50    0.00    0.38    0.00    0.00    0.00    0.00   96.87
+07:25:56 PM  all   10.29    0.00    0.63    0.00    0.13    0.25    0.00    0.00    0.00   88.71
+Average:     all    6.27    0.00    0.56    0.00    0.25    0.13    0.00    0.00    0.00   92.79
+
+MemTotal:        8005836 kB
+MemFree:         1030852 kB
+MemAvailable:    3601472 kB
+
+Connected Users:0
+
+2020/11/28 19:26:00 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:25:56 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:25:58 PM  all    1.00    0.00    0.50    0.00    0.37    0.25    0.00    0.00    0.00   97.88
+07:26:00 PM  all    0.75    0.00    0.13    0.00    0.13    0.00    0.00    0.00    0.00   99.00
+Average:     all    0.88    0.00    0.31    0.00    0.25    0.13    0.00    0.00    0.00   98.44
+
+MemTotal:        8005836 kB
+MemFree:         1031404 kB
+MemAvailable:    3602012 kB
+
+Connected Users:0
+
+2020/11/28 19:26:04 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:26:00 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:26:02 PM  all    1.51    0.00    0.63    0.00    0.38    0.13    0.00    0.00    0.00   97.36
+07:26:04 PM  all    1.38    0.00    0.50    0.00    0.38    0.13    0.00    0.00    0.00   97.62
+Average:     all    1.45    0.00    0.57    0.00    0.38    0.13    0.00    0.00    0.00   97.49
+
+MemTotal:        8005836 kB
+MemFree:         1029340 kB
+MemAvailable:    3599952 kB
+
+Connected Users:0
+
+2020/11/28 19:26:08 Server1Linux 5.8.18-300.fc33.x86_64 (localhost.localdomain) 	11/28/2020 	_x86_64_	(4 CPU)
+
+07:26:04 PM  CPU     usr    nice     sys  iowait     irq    soft   steal   guest   gnice    idle
+07:26:06 PM  all    1.38    0.00    0.38    0.13    0.25    0.25    0.00    0.00    0.00   97.62
+07:26:08 PM  all    1.38    0.00    1.76    3.27    0.63    0.00    0.00    0.00    0.00   92.96
+Average:     all    1.38    0.00    1.07    1.69    0.44    0.13    0.00    0.00    0.00   95.29
+
+MemTotal:        8005836 kB
+MemFree:         1029124 kB
+MemAvailable:    3599736 kB
+
+Connected Users:0
+

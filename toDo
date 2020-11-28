@@ -1,4 +1,4 @@
 1.Create logfiles
-2.Keep a count of how many users are connected in the server
+2.Add color depending of the stats(Red for warning,green if all good)
 3.Check sendMsg function
 4.Encrypt messages before sending them
