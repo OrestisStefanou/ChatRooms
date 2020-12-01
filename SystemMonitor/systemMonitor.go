@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"log"
@@ -66,9 +67,52 @@ func handleClient(conn net.Conn) {
 			ch <- data[1] + b.String()
 			b.Reset()
 			sendMsg(conn, "Got it\n")
+		case "GetUpdates":
+			handleUpdates(conn)
 		default:
 			finished = true
 		}
+	}
+}
+
+//I am uising a different specialString here because the original exists
+//in the files that we send
+func handleUpdates(conn net.Conn) {
+	for i := 0; i < len(sharedFiles); i++ {
+		filename := sharedFiles[i]
+		//First send the filename to create
+		msg := fmt.Sprintf("CreateFile%s%s\n", "&*&", filename)
+		sendMsg(conn, msg)
+		recMsg(conn) //To make sure the client got the message
+		//Send the file line by line
+		sendFile(filename, conn)
+		//Send message that file is sent
+		msg = fmt.Sprintf("CloseFile%s\n", "&*&")
+		sendMsg(conn, msg)
+		recMsg(conn)
+	}
+	//Send message that updates are done
+	msg := fmt.Sprintf("Finished%s\n", "&*&")
+	sendMsg(conn, msg)
+	recMsg(conn)
+
+}
+
+func sendFile(filePath string, conn net.Conn) {
+	file, err := os.OpenFile(filePath, os.O_RDONLY, 0666)
+	if err != nil {
+		sendMsg(conn, "Something went wrong\n")
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		msg := fmt.Sprintf("Line%s%s\n", "&*&", line)
+		sendMsg(conn, msg) //Send the line
+		recMsg(conn)       //Make sure the client got the message
+	}
+	if err = scanner.Err(); err != nil {
+		sendMsg(conn, "Something went wrong\n")
 	}
 }
 

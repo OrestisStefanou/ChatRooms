@@ -62,8 +62,8 @@ func sendMsg(conn net.Conn, msg string) {
 	bytesSent := 0
 	msgLen, err := fmt.Fprintf(conn, msgToSend)
 	checkError(err)
-	bytesSent = bytesSent + msgLen
-	for bytesSent != len(msgToSend) {
+	bytesSent = msgLen
+	for bytesSent < len(msgToSend) {
 		msgLen, err = fmt.Fprintf(conn, msgToSend[bytesSent:])
 		checkError(err)
 		bytesSent = bytesSent + msgLen
@@ -74,7 +74,7 @@ func sendMsg(conn net.Conn, msg string) {
 func recMsg(conn net.Conn) string {
 	message, err := bufio.NewReader(conn).ReadString('\n')
 	if err != nil {
-		return fmt.Sprintf("Closed%s", specialString)
+		return fmt.Sprintf("Closed")
 	}
 	return strings.Trim(decode(message), "\n")
 }

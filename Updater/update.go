@@ -6,13 +6,23 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 )
 
+var wg sync.WaitGroup
+
 func main() {
-	getUpdates("./")
+	wg.Add(len(filesDir))
+	for i := 0; i < len(filesDir); i++ {
+		go getUpdates(filesDir[i])
+	}
+	//Wait for the goroutines to finish
+	wg.Wait()
 }
 
 func getUpdates(dir string) {
+	defer wg.Done()
+	fmt.Println("Entering the function")
 	//Connect to the systemMonitor Server
 	sysMonitorAddr, err := net.ResolveTCPAddr("tcp4", systemMonitorService)
 	checkError(err)
@@ -21,12 +31,13 @@ func getUpdates(dir string) {
 	checkError(err)
 
 	var f *os.File
+	finished := false
 	//Send a request to get the updates
 	msg := fmt.Sprintf("GetUpdates%s\n", specialString)
 	sendMsg(conn, msg)
 	response := recMsg(conn)
-	for {
-		data := strings.Split(response, specialString)
+	for finished == false {
+		data := strings.Split(response, "&*&")
 		switch data[0] {
 		case "CreateFile":
 			filename := data[1]
@@ -47,6 +58,11 @@ func getUpdates(dir string) {
 			f.Close()
 			sendMsg(conn, "Got it\n") //Tell the server that we got the message
 			response = recMsg(conn)   //Receive a new message
+		case "Finished":
+			finished = true
+			sendMsg(conn, "Got it\n")
+		default:
+			finished = true
 		}
 	}
 }
