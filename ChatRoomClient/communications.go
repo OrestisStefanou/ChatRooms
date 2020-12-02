@@ -4,8 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 	"strings"
 )
+
+var myVersion = "1.0"
 
 //String to split the request data
 var specialString = "@*@"
@@ -79,23 +82,45 @@ func recMsg(conn net.Conn) string {
 	return strings.Trim(decode(message), "\n")
 }
 
+//Check with the System Monitor Server if there are any software updates
+func checkForUpdates() {
+	//Connect to the systemMonitor Server
+	sysMonitorAddr, err := net.ResolveTCPAddr("tcp4", systemMonitorService)
+	checkError(err)
+
+	conn, err := net.DialTCP("tcp", nil, sysMonitorAddr)
+	checkError(err)
+
+	//Get latest version
+	msg := fmt.Sprintf("CheckForUpdates\n")
+	sendMsg(conn, msg)
+	latestVersion := recMsg(conn)
+	//fmt.Println("Latest version is:", latestVersion)
+	//Check if we are up to date
+	if latestVersion != myVersion {
+		printRed("Software is out of date.Run the command ./Updater/Updater to update.")
+		os.Exit(0)
+
+	}
+}
+
 func printYellow(text string) {
 	colorYellow := "\033[33m"
 	fmt.Println(string(colorYellow), text)
 	colorReset := "\033[0m"
-	fmt.Println(string(colorReset))
+	fmt.Print(string(colorReset))
 }
 
 func printGreen(text string) {
 	colorGreen := "\033[32m"
 	fmt.Println(string(colorGreen), text)
 	colorReset := "\033[0m"
-	fmt.Println(string(colorReset))
+	fmt.Print(string(colorReset))
 }
 
 func printRed(text string) {
 	colorRed := "\033[31m"
 	fmt.Println(string(colorRed), text)
 	colorReset := "\033[0m"
-	fmt.Println(string(colorReset))
+	fmt.Print(string(colorReset))
 }

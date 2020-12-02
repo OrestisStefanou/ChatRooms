@@ -18,11 +18,11 @@ func main() {
 	}
 	//Wait for the goroutines to finish
 	wg.Wait()
+	printGreen("Updates installed")
 }
 
 func getUpdates(dir string) {
 	defer wg.Done()
-	fmt.Println("Entering the function")
 	//Connect to the systemMonitor Server
 	sysMonitorAddr, err := net.ResolveTCPAddr("tcp4", systemMonitorService)
 	checkError(err)

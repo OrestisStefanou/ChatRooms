@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	checkForUpdates()
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", listeningPort)
 	checkError(err)
 	//Listen for connections

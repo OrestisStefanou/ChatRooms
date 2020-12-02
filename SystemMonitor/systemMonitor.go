@@ -47,18 +47,12 @@ func handleClient(conn net.Conn) {
 		data := strings.Split(message, specialString)
 		switch data[0] {
 		case "MemInfo":
-			//Process and print MemInfo
-			//fmt.Println(data[1])
 			b.WriteString(data[1] + "\n")
 			sendMsg(conn, "Got it\n")
 		case "CpuInfo":
-			//Process and print CpuInfo
-			//fmt.Println(data[1])
 			b.WriteString(data[1] + "\n")
 			sendMsg(conn, "Got it\n")
 		case "ClientsNum":
-			//Print how many clients are connected to the server
-			//fmt.Println(data[1])
 			b.WriteString(data[1] + "\n")
 			sendMsg(conn, "Got it\n")
 		case "StatsDone":
@@ -69,6 +63,9 @@ func handleClient(conn net.Conn) {
 			sendMsg(conn, "Got it\n")
 		case "GetUpdates":
 			handleUpdates(conn)
+		case "CheckForUpdates":
+			msg := fmt.Sprintf("%s\n", myVersion)
+			sendMsg(conn, msg)
 		default:
 			finished = true
 		}

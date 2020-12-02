@@ -14,6 +14,7 @@ var myUsername = ""
 var myRoom = ""
 
 func main() {
+	checkForUpdates()
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", serverService)
 	checkError(err)
 	//Connect to the server
